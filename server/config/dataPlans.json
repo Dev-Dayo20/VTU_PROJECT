@@ -1,0 +1,87 @@
+{
+  "networks": {
+    "1": {
+      "MTN": {
+        "planType": {
+          "SME": {
+            "plans": {
+              "7": "MTN 1.0 GB",
+              "8": "MTN 2.0 GB",
+              "11": "MTN 5.0 GB",
+              "212": "MTN 500.0 MB",
+              "284": "MTN 3.0 GB",
+              "285": "MTN 10.0 GB",
+              "394": "MTN 1.0 TB"
+            }
+          },
+          "CORPERATE GIFTING": {
+            "plans": {
+              "220": "MTN 500MB",
+              "221": "MTN 1.024 GB",
+              "222": "MTN 2.048 GB",
+              "224": "MTN 5.12 GB",
+              "225": "MTN 10.24 GB",
+              "267": "MTN 3.072 GB"
+            }
+          }
+        }
+      }
+    },
+    "4": {
+      "Airtel": {
+        "planType": {
+          "CORPERATE GIFTING": {
+            "plans": {
+              "247": "AIRTEL 1.0 GB",
+              "248": "AIRTEL 2.0 GB",
+              "249": "AIRTEL 5.0 GB",
+              "255": "AIRTEL 500.0 MB",
+              "311": "AIRTEL 10.0 GBB",
+              "317": "AIRTEL 300.0 MB"
+            }
+          },
+          "GIFTING": {
+            "447": "AIRTEL 10.0 GB",
+            "451": "AIRTEL 15.0 GB",
+            "468": "AIRTEL 4.0 GB"
+          }
+        }
+      }
+    },
+    "2": {
+      "GLO": {
+        "planType": {
+          "CORPERATE GIFTING": {
+            "plans": {
+              "340": "GLO 1.0 GB",
+              "341": "GLO 2.0 GB",
+              "342": "GLO 3.0 GB",
+              "343": "GLO 5.0 GB",
+              "344": "GLO 10.0 GB",
+              "345": "GLO 500.0 MB"
+            }
+          }
+        }
+      }
+    },
+    "3": {
+      "9MOBILE": {
+        "planType": {
+          "CORPERATE GIFTING": {
+            "plans": {
+              "430": "9MOBILE 1.0 GB",
+              "431": "9MOBILE 2.0 GB",
+              "432": "9MOBILE 3.0 GB",
+              "433": "9MOBILE 4.0 GB",
+              "435": "9MOBILE 5.0 GB",
+              "436": "9MOBILE 500.0 MB",
+              "437": "9MOBILE 1.5 GB",
+              "438": "9MOBILE 10.0 GB",
+              "439": "9MOBILE 15.0 GB"
+            }
+          }
+        }
+      }
+    }
+  }
+}

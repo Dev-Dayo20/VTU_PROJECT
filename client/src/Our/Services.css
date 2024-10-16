@@ -1,0 +1,64 @@
+/* #wallet-section {
+  background-image: linear-gradient(rgb(238, 3, 3), rgb(37, 1, 1));
+} */
+#card-data {
+  background-color: rgb(255, 239, 239);
+}
+#card-airtime {
+  background-color: rgb(255, 239, 239);
+}
+
+.card {
+  transition: transform 0.3s ease;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  transition: transform 0.3s ease-in-out;
+}
+.zero-balance {
+  color: #6c757d;
+}
+.wallet-balance {
+  font-weight: bold;
+  color: white;
+}
+.btn-animate:hover {
+  background-color: #c82333;
+  color: white;
+  transform: scale(1.05);
+  transition: all 0.5s ease;
+}
+
+.loading-text {
+  text-align: center;
+  font-size: 1.5rem;
+  color: #f8f9fa;
+}
+
+.dashboard-container {
+  display: flex;
+}
+
+.dashboard-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.main-content {
+  flex-grow: 1;
+  padding: 20px;
+  transition: margin-left 0.3s ease;
+  margin-left: 0;
+}
+
+.sidebar.open + .main-content {
+  margin-left: 250px;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    margin-left: 0;
+  }
+}
