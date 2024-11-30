@@ -16,6 +16,7 @@ const {
   registerHandler,
 } = require("../controllers/register.js");
 const electricityBills = require("../controllers/electricityBills.js");
+const { purchaseData } = require("../controllers/BuyData.js");
 
 const router = express.Router();
 //@route POST api/register
@@ -32,8 +33,9 @@ router.get("/dashboard", protect, dashboard);
 
 //@route POST & GET
 //@desc buy data
-router.post("/purchase-data", protect, purchase_data);
-router.get("/networks", getNetworks);
+router.post("/buy-data", protect, purchaseData);
+// router.post("/purchase-data", protect, purchase_data);
+// router.get("/networks", getNetworks);
 
 //@route POST
 //@desc buy airtime

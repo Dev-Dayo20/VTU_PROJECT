@@ -5,23 +5,23 @@
         "planType": {
           "SME": {
             "plans": {
-              "7": "MTN 1.0 GB",
-              "8": "MTN 2.0 GB",
-              "11": "MTN 5.0 GB",
-              "212": "MTN 500.0 MB",
-              "284": "MTN 3.0 GB",
-              "285": "MTN 10.0 GB",
-              "394": "MTN 1.0 TB"
+              "7": { "name": "MTN 1.0 GB - 1 month", "price": "261" },
+              "8": { "name": "MTN 2.0 GB - 1 month", "price": "522" },
+              "11": { "name": "MTN 5.0 GB - 1 month", "price": "1305" },
+              "212": { "name": "MTN 500.0 MB - 1 month", "price": "130" },
+              "284": { "name": "MTN 3.0 GB - 1 month", "price": "783" },
+              "285": { "name": "MTN 10.0 GB - 1 month", "price": "2610" },
+              "394": { "name": "MTN 1.0 TB - 1 month", "price": "259000" }
             }
           },
           "CORPERATE GIFTING": {
             "plans": {
-              "220": "MTN 500MB",
-              "221": "MTN 1.024 GB",
-              "222": "MTN 2.048 GB",
-              "224": "MTN 5.12 GB",
-              "225": "MTN 10.24 GB",
-              "267": "MTN 3.072 GB"
+              "220": { "name": "MTN 500MB - 1 month", "price": "135" },
+              "221": { "name": "MTN 1.024 GB - 1 month", "price": "267" },
+              "222": { "name": "MTN 2.048 GB - 1 month", "price": "534" },
+              "224": { "name": "MTN 5.12 GB - 1 month", "price": "1335" },
+              "225": { "name": "MTN 10.24 GB - 1 month", "price": "2670" },
+              "267": { "name": "MTN 3.072 GB - 1 month", "price": "801" }
             }
           }
         }
@@ -32,18 +32,18 @@
         "planType": {
           "CORPERATE GIFTING": {
             "plans": {
-              "247": "AIRTEL 1.0 GB",
-              "248": "AIRTEL 2.0 GB",
-              "249": "AIRTEL 5.0 GB",
-              "255": "AIRTEL 500.0 MB",
-              "311": "AIRTEL 10.0 GBB",
-              "317": "AIRTEL 300.0 MB"
+              "247": { "name": "AIRTEL 1.0 GB - 1 month", "price": "280" },
+              "248": { "name": "AIRTEL 2.0 GB - 1 month", "price": "560" },
+              "249": { "name": "AIRTEL 5.0 GB - 1 month", "price": "1400" },
+              "255": { "name": "AIRTEL 500.0 MB - 1 month", "price": "150" },
+              "311": { "name": "AIRTEL 10.0 GB - 1 month", "price": "2800" },
+              "317": { "name": "AIRTEL 300.0 MB - 1 month", "price": "100" }
             }
           },
           "GIFTING": {
-            "447": "AIRTEL 10.0 GB",
-            "451": "AIRTEL 15.0 GB",
-            "468": "AIRTEL 4.0 GB"
+            "447": { "name": "AIRTEL 10.0 GB - 1 month", "price": "2050" },
+            "451": { "name": "AIRTEL 15.0 GB - 1 month", "price": "3050" },
+            "468": { "name": "AIRTEL 4.0 GB - 1 month", "price": "1050" }
           }
         }
       }
@@ -53,12 +53,12 @@
         "planType": {
           "CORPERATE GIFTING": {
             "plans": {
-              "340": "GLO 1.0 GB",
-              "341": "GLO 2.0 GB",
-              "342": "GLO 3.0 GB",
-              "343": "GLO 5.0 GB",
-              "344": "GLO 10.0 GB",
-              "345": "GLO 500.0 MB"
+              "340": { "name": "GLO 1.0 GB - 1 month", "price": "275" },
+              "341": { "name": "GLO 2.0 GB - 1 month", "price": "550" },
+              "342": { "name": "GLO 3.0 GB - 1 month", "price": "825" },
+              "343": { "name": "GLO 5.0 GB - 1 month", "price": "1375" },
+              "344": { "name": "GLO 10.0 GB - 1 month", "price": "2750" },
+              "345": { "name": "GLO 500.0 MB - 1 month", "price": "140" }
             }
           }
         }
@@ -69,15 +69,15 @@
         "planType": {
           "CORPERATE GIFTING": {
             "plans": {
-              "430": "9MOBILE 1.0 GB",
-              "431": "9MOBILE 2.0 GB",
-              "432": "9MOBILE 3.0 GB",
-              "433": "9MOBILE 4.0 GB",
-              "435": "9MOBILE 5.0 GB",
-              "436": "9MOBILE 500.0 MB",
-              "437": "9MOBILE 1.5 GB",
-              "438": "9MOBILE 10.0 GB",
-              "439": "9MOBILE 15.0 GB"
+              "430": { "name": "9MOBILE 1.0 GB - 1 month", "price": "150" },
+              "431": { "name": "9MOBILE 2.0 GB - 1 month", "price": "300" },
+              "432": { "name": "9MOBILE 3.0 GB - 1 month", "price": "450" },
+              "433": { "name": "9MOBILE 4.0 GB - 1 month", "price": "600" },
+              "435": { "name": "9MOBILE 5.0 GB - 1 month", "price": "750" },
+              "436": { "name": "9MOBILE 500.0 MB - 1 month", "price": "75" },
+              "437": { "name": "9MOBILE 1.5 GB - 1 month", "price": "220" },
+              "438": { "name": "9MOBILE 10.0 GB - 1 month", "price": "1500" },
+              "439": { "name": "9MOBILE 15.0 GB - 1 month", "price": "2250" }
             }
           }
         }

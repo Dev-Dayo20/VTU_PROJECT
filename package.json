@@ -4,12 +4,13 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "client": "cd client && npm run start",
+    "admin": "cd admin && npm run start",
+    "client": "cd user && npm run start",
     "server": "nodemon server/server.js",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "build": "cd client && npm run build",
-    "lint": "cd client && npm run lint",
-    "preview": "cd client && npm run preview"
+    "dev": "concurrently \"npm run server\" \"npm run client\" \"npm run admin\"",
+    "build": "cd user && npm run build",
+    "lint": "cd user && npm run lint",
+    "preview": "cd user && npm run preview"
   },
   "keywords": [],
   "author": "",

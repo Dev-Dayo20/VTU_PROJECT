@@ -1,0 +1,17 @@
+.login-section {
+  /* background-color: lightcoral; */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 25px;
+}
+
+/* #login-id {
+  background-image: linear-gradient(rgb(167, 26, 26), rgb(145, 1, 1));
+  color: white;
+  padding: 5px;
+  border: none;
+  border-radius: 6px;
+
+} */

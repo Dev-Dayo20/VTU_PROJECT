@@ -1,5 +1,4 @@
 const axios = require("axios");
-const Wallet = require("../models/wallet_models");
 const User = require("../models/user_model");
 require("dotenv").config();
 
@@ -12,29 +11,27 @@ const initiatePayment = async (req, res) => {
 
   if (!username || !email) {
     return res.status(401).json({
-      errors: [{ msg: "User not authenticated", param: "protect" }],
+      errors: [{ error: "User not authenticated", param: "protect" }],
     });
   }
   const errors = [];
 
-  if (errors.length > 0) {
-    return res.status(400).json({ errors });
-  }
+  if (errors.length > 0) return res.status(400).json({ errors });
 
+  const user = await User.findOne({ username });
+  if (!user) {
+    return res
+      .status(404)
+      .json({ errors: [{ error: "User not found", param: "username" }] });
+  }
   try {
-    const user = await User.findOne({ username });
-    if (!user) {
-      return res
-        .status(404)
-        .json({ errors: [{ msg: "User not found", param: "username" }] });
-    }
     const response = await axios.post(
       "https://api.paystack.co/transaction/initialize",
       {
         email: email,
         amount: amount * 100,
         callback_url:
-          "https://43b9-102-91-102-50.ngrok-free.app/payment-callback",
+          "https://9a2e-41-190-14-34.ngrok-free.app/payment-callback",
         metadata: {
           username: username,
         },
@@ -55,7 +52,7 @@ const initiatePayment = async (req, res) => {
 
     // Handle Paystack or server-side errors
     res.status(500).json({
-      message: "Error initiating payment",
+      error: "Error initiating payment",
       error: error.response?.data?.message || error.message,
     });
   }
@@ -98,7 +95,7 @@ const verifyPayment = async (req, res) => {
     console.error(error);
     res
       .status(500)
-      .json({ message: "Error verifying payment", error: error.message });
+      .json({ error: "Error verifying payment", error: error.message });
   }
 };
 
@@ -133,11 +130,11 @@ const getTransctionDetails = async (req, res) => {
     } else {
       return res
         .status(404)
-        .json({ message: "Transaction not found or still processing" });
+        .json({ error: "Transaction not found or still processing" });
     }
   } catch (error) {
     console.error("Error fetching transaction details:", error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ error: "Internal server error" });
   }
 };
 

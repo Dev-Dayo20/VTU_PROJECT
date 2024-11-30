@@ -5,7 +5,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "server": "nodemon server.js",
-    "hash": "nodemon hash.js"
+    "hash": "nodemon hash.js",
+    "bulk": " nodemon Network.js"
   },
   "keywords": [],
   "author": "",

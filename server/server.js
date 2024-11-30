@@ -18,6 +18,9 @@ app.use("/devdplug", [
   require("./routes/walletRoutes"),
   require("./routes/payment_route"),
   require("./routes/webhookRoute"),
+  require("./routes/historyRoutes"),
+  require("./routes/walletRoutes"),
+  require("./admin routes/adminAuth"),
 ]);
 
 app.get("/payment-callback", (req, res) => {

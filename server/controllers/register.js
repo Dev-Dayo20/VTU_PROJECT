@@ -47,6 +47,7 @@ const registerHandler = async (req, res) => {
       email,
       phoneNumber,
       password,
+      status: "Active",
     });
 
     const salt = await bcrypt.genSalt(10);

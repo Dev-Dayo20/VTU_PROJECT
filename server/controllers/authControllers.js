@@ -62,14 +62,13 @@ const loginHandler = async (req, res) => {
 // @Desc dashboard route
 // @POST request
 const dashboard = async (req, res) => {
+  const user = await User.findById(req.user.id).select("username");
+  const wallet = await Wallet.findOne({ userId: user.id });
+
+  if (!user) return res.status(404).json({ error: "User not found" });
+  if (!wallet) return res.satus(400).json({ error: "wallet not found" });
+
   try {
-    const user = await User.findById(req.user.id).select("username");
-    if (!user) {
-      return res.status(404).json({ msg: "User not found" });
-    }
-
-    const wallet = await Wallet.findOne({ userId: user.id });
-
     res.status(200).json({
       username: user.username,
       wallet: wallet.balance,
