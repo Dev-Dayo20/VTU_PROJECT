@@ -9,7 +9,7 @@ const transactionSchema = new mongoose.Schema(
     },
     type: {
       type: String,
-      enum: ["data", "airtime", "cable", "electricity"],
+      enum: ["data", "airtime"],
       required: true,
     },
     amount: { type: Number, required: true },
@@ -28,7 +28,7 @@ const transactionSchema = new mongoose.Schema(
       enum: ["pending", "completed", "failed"],
       default: "pending",
     },
-    createdAt: { type: Date, default: Date.now, expires: 2592000 },
+    createdAt: { type: Date, default: Date.now, expires: 432000 },
   },
   { timestamps: true }
 );

@@ -6,7 +6,7 @@ const Transaction = require("../models/Transaction");
 
 const purchaseData = async (req, res) => {
   const { networkId, planId, mobileNumber, portedNumber } = req.body;
-  if (!networkId || !planId || !mobileNumber) {
+  if (!networkId || !planId || !mobileNumber || !portedNumber) {
     return res.status(400).json({ error: "All fields are required" });
   }
 
@@ -36,7 +36,7 @@ const purchaseData = async (req, res) => {
   } else if (wallet.balance < plan.price) {
     return res
       .status(400)
-      .json({ error: "insufficient wallet balance to make purchase" });
+      .json({ error: "Insufficient wallet balance to make purchase" });
   }
 
   const originalBalance = wallet.balance;
@@ -60,7 +60,7 @@ const purchaseData = async (req, res) => {
     network: networkId,
     mobile_number: mobileNumber,
     plan: planId,
-    ported_number: portedNumber === true,
+    Ported_number: portedNumber === true,
   };
 
   try {
@@ -104,7 +104,6 @@ const purchaseData = async (req, res) => {
       const errorMessage = error.response.data.error || "Something went wrong";
       res.status(400).json({ error: errorMessage });
     }
-
     return res.status(500).json({
       error: "Failed to purchase data. Please try again.",
       details: error.response?.data || error.message,

@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { Table, Spinner, Badge } from "react-bootstrap";
-const RecentTransactions = () => {
-  const [transaction, setTransactions] = useState([]);
+
+const RecentSignups = () => {
+  const [recentSignups, setRecentSignups] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchRecentTransactions = async () => {
+    const fetchRecentSignups = async () => {
       const token = localStorage.getItem("token");
       const config = { headers: { Authorization: `Bearer ${token}` } };
       try {
@@ -14,51 +15,47 @@ const RecentTransactions = () => {
           "http://localhost:2500/devdplug//admin/recent-activities",
           config
         );
-        setTransactions(response.data.recentTransactions);
+        setRecentSignups(response.data.recentSignups);
       } catch (error) {
         console.log(error);
       } finally {
         setLoading(false);
       }
     };
-    fetchRecentTransactions();
+    fetchRecentSignups();
   }, []);
 
   const getStatusBadge = (status) => {
     const colors = {
-      completed: "success",
-      failed: "danger",
-      pending: "warning",
+      Active: "success",
+      Blocked: "danger",
+      Suspended: "warning",
     };
     return <Badge bg={colors[status]}>{status}</Badge>;
   };
   return (
     <>
-      <h4 className="text-danger mt-4 text-center">Recent Transactions</h4>
-      <div style={{ overflowX: "auto" }}>
+      <div className="recent-activities mt-5">
+        <h4 className="text-danger text-center mb-3">Recent Signups</h4>
         {loading ? (
           <Spinner animation="border" variant="danger" />
-        ) : transaction.length > 0 ? (
+        ) : recentSignups.length > 0 ? (
           <Table striped bordered hover responsive>
             <thead>
               <tr>
+                <th>Name</th>
                 <th>Username</th>
-                <th>Amount</th>
-                <th>Details</th>
+                <th>Email</th>
                 <th>Date</th>
                 <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              {transaction.map((recent) => (
+              {recentSignups.map((recent) => (
                 <tr key={recent._id}>
-                  <td> {recent.userId.username} </td>
-                  <td> {recent.amount} </td>
-                  <td>
-                    {" "}
-                    {recent.details.network} - {recent.details.phoneNumber} -{" "}
-                    {recent.details.planType}{" "}
-                  </td>
+                  <td> {recent.name} </td>
+                  <td> {recent.username} </td>
+                  <td> {recent.email} </td>
                   <td> {new Date(recent.createdAt).toLocaleString()} </td>
                   <td> {getStatusBadge(recent.status)} </td>
                 </tr>
@@ -66,11 +63,11 @@ const RecentTransactions = () => {
             </tbody>
           </Table>
         ) : (
-          <p className="text-center">No Recent Transactions</p>
+          <p className="text-center">No Recent Sign up</p>
         )}
       </div>
     </>
   );
 };
 
-export default RecentTransactions;
+export default RecentSignups;

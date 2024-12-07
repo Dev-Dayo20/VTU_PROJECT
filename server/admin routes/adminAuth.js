@@ -6,6 +6,7 @@ const { adminRegister, adminLogin } = require("../admin controllers/adminAuth");
 const {
   fetchAllTransactions,
 } = require("../admin controllers/getTransactions");
+const recent = require("../admin controllers/RecentActivities");
 
 // Admin Authentication
 router.post("/admin/register", adminRegister);
@@ -20,5 +21,7 @@ router.patch("/admin/users/:id/status"); // Suspend/Activate user account
 router.get("/admin/users/:id/transaction"); // Fetch user's specific transactions
 
 router.get("/admin/transactions", protect, adminOnly, fetchAllTransactions);
+//Recent Activities Route
+router.get("/admin/recent-activities", protect, recent);
 
 module.exports = router;

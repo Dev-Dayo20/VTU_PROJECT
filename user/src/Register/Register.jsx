@@ -207,7 +207,7 @@ const Register = () => {
                   {errors.phoneNumber && (
                     <p className="text-danger">{errors.phoneNumber}</p>
                   )}
-                  <label
+                  {/* <label
                     htmlFor="referralCode"
                     className="form-label mb-3 fw-bold"
                   >
@@ -221,7 +221,7 @@ const Register = () => {
                     value={referralCode}
                     onChange={onChange}
                     placeholder="Referral Link (Optional)"
-                  ></input>
+                  ></input> */}
                   {/* {errors.phoneNumber && (
                     <p className="text-danger">{errors.phoneNumber}</p>
                   )} */}

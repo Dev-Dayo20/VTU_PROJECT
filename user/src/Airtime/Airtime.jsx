@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   Form,
@@ -18,7 +19,7 @@ const Airtime = () => {
     networkId: "",
     amount: "",
     mobileNumber: "",
-    portedNumber: false,
+    portedNumber: true,
     airtimeType: "VTU",
   });
   const [showModal, setShowModal] = useState(false);
@@ -28,6 +29,7 @@ const Airtime = () => {
     variant: "info",
   });
   const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     const value =
@@ -103,7 +105,7 @@ const Airtime = () => {
           networkId: "",
           amount: "",
           mobileNumber: "",
-          portedNumber: false,
+          portedNumber: true,
           airtimeType: "VTU",
         });
       } else {
@@ -146,7 +148,9 @@ const Airtime = () => {
           <Container>
             <Row className="justify-content-center">
               <Col lg={6}>
-                <h2 className="mb-4 text-center">Purchase Airtime</h2>
+                <h2 className="mb-4 text-center text-danger">
+                  Purchase Airtime
+                </h2>
                 <Form onSubmit={handleSubmit}>
                   <Form.Group className="mb-3">
                     <Form.Label>
@@ -240,6 +244,11 @@ const Airtime = () => {
                         "Proceed"
                       )}
                     </Button>
+                    <div className="d-grid mt-3">
+                      <Button variant="secondary" onClick={() => navigate(-1)}>
+                        Go Back
+                      </Button>
+                    </div>
                   </div>
                 </Form>
               </Col>

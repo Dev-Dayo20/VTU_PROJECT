@@ -6,6 +6,8 @@ import BlockedUsers from "./Home UI/BlockedUsers";
 import TotalTransactions from "./Home UI/TotalTransactions";
 import FailedTransactions from "./Home UI/FailedTransactions";
 import PendingTransactions from "./Home UI/PendingTransactions";
+import RecentSignups from "./Home UI/RecentSignups";
+import RecentTransactions from "./Home UI/RecentTransactions";
 
 const Home = () => {
   const getGreeting = () => {
@@ -51,6 +53,8 @@ const Home = () => {
           <div className="recent-activity bg-dark text-white px-4 py-2">
             <h5 className="">Recent Activity</h5>
           </div>
+          <RecentSignups />
+          <RecentTransactions />
         </Container>
       </section>
     </>

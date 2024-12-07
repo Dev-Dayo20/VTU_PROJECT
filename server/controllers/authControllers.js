@@ -3,6 +3,7 @@ const jwt = require("jsonwebtoken");
 const User = require("../models/user_model");
 const { check, validationResult } = require("express-validator");
 const Wallet = require("../models/wallet_models");
+const { json } = require("express");
 
 //@route POST api/auth/login
 //@desc log in user and return JWT token
@@ -27,6 +28,8 @@ const loginHandler = async (req, res) => {
       return res
         .status(400)
         .json({ errors: [{ msg: "Invalid credentials", param: "email" }] });
+    } else if (user.status !== "Active") {
+      return res.status(401).json({ error: "Unathourized. Account Suspended" });
     }
 
     //compare password

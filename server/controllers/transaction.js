@@ -11,8 +11,10 @@ const getHistory = async (req, res) => {
     const overAllTransactions = totalTransactions.length;
 
     const transactions = await Transaction.find({ userId })
-      .sort({ createdAt: -1 })
-      .exec();
+      .sort({
+        createdAt: -1,
+      })
+      .limit(10);
 
     if (!transactions) {
       return res

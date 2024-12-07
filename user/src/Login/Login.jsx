@@ -69,6 +69,9 @@ const Login = () => {
             setShowModal(true);
           }
         });
+      } else if (error.status === 401) {
+        setModalMessage(error.response.data.error);
+        setShowModal(true);
       }
     } finally {
       setLoading(false);

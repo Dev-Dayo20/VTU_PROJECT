@@ -31,7 +31,7 @@ const initiatePayment = async (req, res) => {
         email: email,
         amount: amount * 100,
         callback_url:
-          "https://9a2e-41-190-14-34.ngrok-free.app/payment-callback",
+          "https://72b4-41-190-14-239.ngrok-free.app/payment-callback",
         metadata: {
           username: username,
         },

@@ -4,10 +4,9 @@ const fetchAllTransactions = async (req, res) => {
   try {
     const transactions = await Transaction.find({});
     const totalTransactions = transactions.length;
-    if (!transactions || !totalTransactions) {
+    if (!transactions) {
       return res.status(404).json({ error: "Total transaction not found" });
     }
-
     const transactionStatus = await Transaction.find({ status: "failed" });
     const totalTransactionStatus = transactionStatus.length;
     if (!transactionStatus) {
@@ -16,7 +15,7 @@ const fetchAllTransactions = async (req, res) => {
 
     const pendingTransacton = await Transaction.find({ status: "pending" });
     const showPendingTransactions = pendingTransacton.length;
-    if (!pendingTransacton || !showPendingTransactions) {
+    if (!pendingTransacton) {
       return res.status(404).json({ error: "No pending transaction" });
     }
 

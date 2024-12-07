@@ -8,7 +8,6 @@ const webhook = async (req, res) => {
   try {
     const paystackSignature = req.headers["x-paystack-signature"];
     if (!paystackSignature) {
-      console.error("Paystack signature missing");
       return res.status(400).send("Paystack signature missing");
     }
 
@@ -18,7 +17,6 @@ const webhook = async (req, res) => {
       .digest("hex");
 
     if (hash !== paystackSignature) {
-      console.error("Signature mismatch");
       return res.status(401).send("Unauthorized: Invalid signature");
     }
 
@@ -30,7 +28,6 @@ const webhook = async (req, res) => {
       const reference = paymentData.reference;
 
       const isPaymentVerified = await verifyPayment(reference);
-      // console.log("Payment Verified:", isPaymentVerified);
 
       if (isPaymentVerified) {
         await updateWalletBalance(userEmail, amountPaid);
@@ -60,7 +57,6 @@ const verifyPayment = async (reference) => {
       }
     );
     const paymentData = response.data.data;
-    // console.log("Payment Data from Paystack:", paymentData);
     return paymentData.status === "success";
   } catch (error) {
     console.error("Error verifying payment:", error);
@@ -73,14 +69,11 @@ const updateWalletBalance = async (email, amount) => {
   try {
     const user = await User.findOne({ email });
     if (!user) {
-      // console.error(`User with email ${email} not found`);
       throw new Error(`User with email ${email} not found`);
     }
 
     const wallet = await Wallet.findOne({ userId: user._id });
-    // console.log("Wallet Found:", wallet);
     if (!wallet) {
-      // console.error(`Wallet not found for user ${email}`);
       throw new Error(`Wallet not found for user ${email}`);
     }
 

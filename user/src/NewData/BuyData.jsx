@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import {
   Form,
@@ -118,7 +118,7 @@ const BuyData = () => {
       networkId: selectedNetwork.networkId,
       planId: selectedPlan.planId,
       mobileNumber: phoneNumber,
-      portedNumber: true,
+      portedNumber: portedNumber,
     };
 
     try {
@@ -148,13 +148,6 @@ const BuyData = () => {
           variant: "success",
         });
       }
-
-      setSelectedNetwork("");
-      setSelectedPlanType("");
-      setSelectedPlan("");
-      setPhoneNumber("");
-      setPlanTypes([]);
-      setPlans([]);
     } catch (error) {
       setLoading(true);
       console.error("Error during purchase:", error);
@@ -189,11 +182,9 @@ const BuyData = () => {
             <Row className="justify-content-center">
               <Col lg={6}>
                 <Card className="shadow-sm p-4">
-                  <div className="d-flex justify-content-center">
-                    <Card.Title className="fw-bold fs-3 text-danger">
-                      Purchase Data
-                    </Card.Title>
-                  </div>
+                  <Card.Title className="fw-bold fs-3 text-danger text-center">
+                    Purchase Data
+                  </Card.Title>
                   <Card.Body>
                     <Form onSubmit={handlePurchase}>
                       {/* Network Dropdown */}
@@ -320,6 +311,14 @@ const BuyData = () => {
                                 {phoneNumber || "Not entered"}{" "}
                               </p>
                             </>
+                            <Form.Check
+                              type="switch"
+                              checked={portedNumber}
+                              id="custom-switch"
+                              label="Ported Number"
+                              onChange={() => setPortedNumber(!portedNumber)}
+                            />
+                            <br />
                             <div className="d-grid gap-2">
                               <Button
                                 type="submit"
@@ -336,15 +335,12 @@ const BuyData = () => {
                           </Form.Group>
                         </>
                       )}
-                      <br />
-                      <Form.Check
-                        type="switch"
-                        checked={portedNumber}
-                        id="custom-switch"
-                        label="Ported Number"
-                        onChange={() => setPortedNumber(!portedNumber)}
-                      />
                     </Form>
+                    <div className="d-grid gap-2 mt-3">
+                      <Button variant="secondary" onClick={() => navigate(-1)}>
+                        Go Back
+                      </Button>
+                    </div>
                   </Card.Body>
                 </Card>
               </Col>

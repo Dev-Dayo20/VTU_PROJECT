@@ -63,9 +63,7 @@ const TransactionHistory = () => {
             <tbody>
               {transactions.map((transaction) => (
                 <tr key={transaction._id}>
-                  <td>
-                    {new Date(transaction.createdAt).toLocaleDateString()}
-                  </td>
+                  <td>{new Date(transaction.createdAt).toLocaleString()}</td>
                   <td>{transaction.type}</td>
                   <td>₦{transaction.amount}</td>
                   <td>

@@ -150,7 +150,7 @@ const ServiceCards = () => {
           <div className="container py-5">
             <h2>Payment & Services</h2>
             <div className="row justify-content-center align-items-center py-4">
-              <div className="col-lg-4 col-md-6 col-sm-8 my-4">
+              <div className="col-lg-6 col-sm-8 my-4">
                 <div className="card shadow-sm p-3" id="card-data">
                   <div className="card-img-top text-center">
                     <CgData className="text-danger fs-1" />
@@ -171,7 +171,7 @@ const ServiceCards = () => {
                 </div>
               </div>
 
-              <div className="col-lg-4 col-md-6 col-sm-8 my-4">
+              <div className="col-lg-6 col-sm-8 my-4">
                 <div className="card shadow-sm p-3" id="card-airtime">
                   <div className="card-img-top text-center">
                     <LuPhoneCall className="text-danger fs-1" />
@@ -193,7 +193,7 @@ const ServiceCards = () => {
                 </div>
               </div>
 
-              <div className="col-lg-4 col-md-6 col-sm-8 my-4">
+              {/* <div className="col-lg-4 col-md-6 col-sm-8 my-4">
                 <div className="card shadow-sm p-3" id="card-airtime">
                   <div className="card-img-top text-center">
                     <FaRegLightbulb className="text-danger fs-1" />
@@ -213,9 +213,9 @@ const ServiceCards = () => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="col-lg-4 col-md-6 col-sm-8 my-4">
+              {/* <div className="col-lg-4 col-md-6 col-sm-8 my-4">
                 <div className="card shadow-sm p-3" id="card-airtime">
                   <div className="card-img-top text-center">
                     <HiMiniTv className="text-danger fs-1" />
@@ -235,9 +235,9 @@ const ServiceCards = () => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </div> */}
 
-              <div className="col-lg-4 col-md-6 col-sm-8 my-4">
+              <div className="col-lg-6 col-sm-8 my-4">
                 <div className="card shadow-sm p-3" id="card-airtime">
                   <div className="card-img-top text-center">
                     <BsPeopleFill className="text-danger fs-1" />
@@ -258,7 +258,7 @@ const ServiceCards = () => {
                   </div>
                 </div>
               </div>
-              <div className="col-lg-4 col-md-6 col-sm-8 my-4">
+              <div className="col-lg-6 col-sm-8 my-4">
                 <div className="card shadow-sm p-3" id="card-airtime">
                   <div className="card-img-top text-center">
                     <FaMoneyBillTrendUp className="text-danger fs-1" />

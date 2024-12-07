@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import "./FundWallet.css";
 import CustomLoading from "../CustomLoading/CustomLoading";
 import devdlogo from "../assets/devdlogo.png";
@@ -10,6 +11,8 @@ const FundWallet = () => {
   const [loading, setLoading] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
+
+  const navigate = useNavigate();
 
   // Handle payment initiation
   const handlePayment = async () => {
@@ -65,6 +68,8 @@ const FundWallet = () => {
         setModalMessage(
           "No response received from the server. Please try again later."
         );
+      } else if (!navigator.online) {
+        setModalMessage("Network error. Please check you internet connection");
       } else {
         // Something happened in setting up the request that triggered an Error
         setModalMessage("An unexpected error occurred. Please try again.");
@@ -104,17 +109,22 @@ const FundWallet = () => {
                   value={amount}
                   onChange={(e) => setAmount(e.target.value)}
                 />
-                <button
-                  onClick={handlePayment}
-                  disabled={loading}
-                  className="btn btn-danger"
-                >
-                  {loading ? (
-                    <CustomLoading text="Please wait" size="small" />
-                  ) : (
-                    "Fund Wallet"
-                  )}
-                </button>
+                <div className="d-flex align-items-center justify-content-between">
+                  <button
+                    onClick={handlePayment}
+                    disabled={loading}
+                    className="btn btn-danger"
+                  >
+                    {loading ? (
+                      <CustomLoading text="Please wait" size="small" />
+                    ) : (
+                      "Fund Wallet"
+                    )}
+                  </button>
+                  <Button variant="secondary" onClick={() => navigate(-1)}>
+                    Go Back
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
