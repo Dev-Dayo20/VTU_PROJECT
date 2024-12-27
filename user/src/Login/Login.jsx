@@ -5,6 +5,7 @@ import axios from "axios";
 import devdlogo from "../assets/devdlogo.png";
 import { Modal, Button, Form, Image } from "react-bootstrap";
 import CustomLoading from "../CustomLoading/CustomLoading";
+import { useAuthentication } from "../Utils/AuthProvider";
 
 const Login = () => {
   const [formData, setformData] = useState({
@@ -16,9 +17,12 @@ const Login = () => {
   const [showModal, setShowModal] = useState(false);
   const [modalMessage, setModalMessage] = useState("");
   const [loading, setLoading] = useState(false);
+
   const navigate = useNavigate("");
+  const { login } = useAuthentication();
 
   const { email, password } = formData;
+
   //Javascript spread operator
   const onChange = async (e) => {
     setformData({ ...formData, [e.target.name]: e.target.value });
@@ -53,9 +57,11 @@ const Login = () => {
         body,
         config
       );
-      localStorage.setItem("token", res.data.token);
+      login(res.data.token);
       navigate("/dashboard");
+      // console.log(res.data);
     } catch (error) {
+      console.log(error);
       if (error && error.response.data && error.response.data.errors) {
         const errors = error.response.data.errors;
         errors.forEach((err) => {
@@ -144,6 +150,7 @@ const Login = () => {
                       className="btn btn-danger"
                       disabled={loading}
                       id="login-id"
+                      type="submit"
                     >
                       {" "}
                       {loading ? (

@@ -21,6 +21,7 @@ app.use("/devdplug", [
   require("./routes/historyRoutes"),
   require("./routes/walletRoutes"),
   require("./admin routes/adminAuth"),
+  require("./admin routes/TelecomAPI"),
 ]);
 
 app.get("/payment-callback", (req, res) => {

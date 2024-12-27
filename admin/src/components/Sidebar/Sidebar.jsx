@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../Sidebar/Sidebar.css";
 import { useNavigate } from "react-router-dom";
@@ -62,7 +62,7 @@ const Sidebar = () => {
             </Link>
           </li>
           <li>
-            <Link to="#" className="d-flex align-items-center">
+            <Link to="/admin/manage-user" className="d-flex align-items-center">
               <CgProfile className="fs-4 mx-2" />
               <span className="fs-6">Manage User</span>
             </Link>

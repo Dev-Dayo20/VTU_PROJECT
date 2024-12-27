@@ -14,13 +14,13 @@ import HomePage from "./Frontpage/HomePage";
 import Login from "./Login/Login";
 import Register from "./Register/Register";
 import Services from "./Our/Services";
-import Data from "./Dat/Data";
 import Airtime from "./Airtime/Airtime";
 import ProtectedRoutes from "./Protected/ProtectedRoutes";
 import FundWallet from "./Fund Wallet/FundWallet";
 import PaymentReceipt from "./Receipt/PaymentReceipt";
 import BillsPayment from "./Bills Payment/BillsPayment";
 import BuyData from "./NewData/BuyData";
+import AuthProvider from "./Utils/AuthProvider";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -132,9 +132,11 @@ const AnimatedRoutes = () => {
 
 const App = () => {
   return (
-    <Router>
-      <AnimatedRoutes />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <AnimatedRoutes />
+      </Router>
+    </AuthProvider>
   );
 };
 

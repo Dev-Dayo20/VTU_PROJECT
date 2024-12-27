@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { Card, Spinner, Badge } from "react-bootstrap";
+import { Card, Spinner } from "react-bootstrap";
 import axios from "axios";
 
 const FailedTransactions = () => {
@@ -24,13 +24,13 @@ const FailedTransactions = () => {
       } catch (error) {
         setLoading(true);
         console.log(error);
-        if (error.response?.status === 401) {
-          console.log("Token expired. Redirecting to login.");
-          localStorage.removeItem("token");
-          navigate("/");
-        } else {
-          console.log("An error occurred. Please try again.");
-        }
+        // if (error.response?.status === 401) {
+        //   console.log("Token expired. Redirecting to login.");
+        //   localStorage.removeItem("token");
+        //   navigate("/admin/login");
+        // } else {
+        //   console.log("An error occurred. Please try again.");
+        // }
       } finally {
         setLoading(false);
       }

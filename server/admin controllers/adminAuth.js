@@ -54,7 +54,12 @@ const adminLogin = async (req, res) => {
 
     //Generate a JWT token for Routes access
     const token = jwt.sign(
-      { id: admin._id, role: "admin" },
+      {
+        id: admin._id,
+        role: "admin",
+        username: "admin",
+        email: "adminairatech@gmail.com",
+      },
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );

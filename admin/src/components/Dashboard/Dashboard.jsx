@@ -1,4 +1,3 @@
-import React from "react";
 import "../Dashboard/Dashboard.css";
 import Sidebar from "../Sidebar/Sidebar";
 import Navbar from "../Navbar/Navbar";
@@ -12,7 +11,7 @@ const Dashboard = () => {
         <Sidebar />
         <div className="main-content">
           <Home />
-          {/* <Footer /> */}
+          <Footer />
         </div>
       </div>
     </div>
