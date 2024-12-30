@@ -10,6 +10,7 @@ const recent = require("../admin controllers/RecentActivities");
 const {
   getUserById,
   updateUserStatus,
+  deleteUserAccount,
 } = require("../admin controllers/userInfo");
 const { adminUserFund } = require("../admin controllers/adminUserWalletFund");
 
@@ -21,7 +22,7 @@ router.post("/admin/login", adminLogin);
 router.get("/admin/users", protect, adminOnly, fetchUsers);
 router.get("/admin/users/:id", getUserById); //Fetch user's specific details
 router.put("/admin/users/:id", updateUserStatus); //Update user's specific details
-router.delete("/admin/users/:id"); // Delete user
+router.delete("/admin/users/delete/:id", deleteUserAccount); // Delete user
 router.patch("/admin/users/:id/status"); // Suspend/Activate user account
 router.get("/admin/users/:id/transaction"); // Fetch user's specific transactions
 

@@ -70,11 +70,11 @@ const Sidebar = () => {
 
           <li>
             <Link
-              to="/dashboard/fund-wallet"
+              to="/admin/telecoms"
               className="d-flex align-items-center"
             >
               <IoWallet className="fs-4 mx-2" />
-              <span className="fs-6"> Manage Transactions</span>
+              <span className="fs-6"> Manage Telecoms</span>
             </Link>
           </li>
           <li>

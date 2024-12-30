@@ -1,5 +1,73 @@
 const { Network, PlanType, Plan } = require("../models/Network");
 
+//FETCH PLANTYPES LOGIC
+const fetchPlanTypes = async (req, res) => {
+  try {
+    const plantypes = await PlanType.find({}).populate({ path: "networkId" });
+    res.status(200).json({ success: true, data: plantypes });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+//FETCH PLANS LOGIC
+const fetchPlans = async (req, res) => {
+  try {
+    const plans = await Plan.find({}).populate({
+      path: "planTypeId",
+      populate: {
+        path: "networkId",
+      },
+    });
+    if (!plans) {
+      return res.status(400).json({ error: "No plans found" });
+    }
+    res.status(200).json({ success: true, data: plans });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+//MANAGING NETWORKS LOGIC
+const getAllNetworks = async (req, res) => {
+  try {
+    const allNetworks = await Network.find({});
+    if (!allNetworks) {
+      return res.status(404).json({ error: "No network found" });
+    }
+    res.status(200).json({ success: true, data: allNetworks });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+};
+
+const manageNetworks = async (req, res) => {
+  const { id } = req.params;
+  const { status, reason } = req.body;
+  if (!id || !status || !reason) {
+    return res.status(404).json({ error: "All fields are required" });
+  }
+  try {
+    const updateNetworkStatus = await Network.findByIdAndUpdate(
+      id,
+      { status, reason },
+      { new: true, runValidators: true }
+    );
+    if (!updateNetworkStatus) {
+      return res
+        .status(400)
+        .json({ success: false, error: "Network not found" });
+    }
+    res.status(200).json({ success: true, data: updateNetworkStatus });
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ success: false, error: "Internal server error. " });
+  }
+};
+
 //ADDING, UPDATING & DELETING PLANTYPES
 const addPlanType = async (req, res) => {
   const { networkId, name, status } = req.body;
@@ -148,6 +216,10 @@ const updatePlan = async (req, res) => {
 };
 
 module.exports = {
+  getAllNetworks,
+  fetchPlans,
+  fetchPlanTypes,
+  manageNetworks,
   addPlanType,
   deletePlanType,
   updatePlanType,

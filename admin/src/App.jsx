@@ -15,6 +15,7 @@ import ViewUser from "./components/Manage User/ViewUser";
 import AuthProvider from "./Utils/AuthProvider";
 import AddUser from "./components/Forms/Add User/AddUser";
 import UserDetails from "./components/Manage User/UserDetails";
+import ManagaTelecomms from "./components/Mange Telecoms/ManagaTelecomms";
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -74,6 +75,7 @@ const AnimatedRoutes = () => {
             }
           />
           <Route path="/admin/users/:id" element={<UserDetails />} />
+          <Route path="/admin/telecoms" element={<ManagaTelecomms />} />
         </Routes>
       </AnimatePresence>
     </>

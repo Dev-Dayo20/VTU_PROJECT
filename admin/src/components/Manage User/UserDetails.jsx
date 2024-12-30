@@ -11,10 +11,11 @@ import {
 import Navbar from "../Navbar/Navbar";
 import Sidebar from "../Sidebar/Sidebar";
 import "../Manage User/UserDetails.css";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import FundWalletModal from "../Modal/FundWalletModal";
 import ManageUserModal from "../Modal/ManageUserModal";
+import ConfirmDeleteUserAccount from "../Modal/ConfirmDeleteUserAccount";
 
 const UserDetails = () => {
   const { id } = useParams();
@@ -26,6 +27,7 @@ const UserDetails = () => {
 
   const [showFundModal, setShowFundModal] = useState(false);
   const [showManageUser, setShowManageUser] = useState(false);
+  const [showDeleteUserAccount, setShowDeleteUserAccount] = useState(false);
 
   // Handler functions for modal
   const handleShowModal = () => setShowFundModal(true);
@@ -33,6 +35,11 @@ const UserDetails = () => {
 
   const handleShowManageUserModal = () => setShowManageUser(true);
   const handleCloseManageUserModal = () => setShowManageUser(false);
+
+  const showDeleteUserAccountModal = () => setShowDeleteUserAccount(true);
+  const closeUserAccountModal = () => setShowDeleteUserAccount(false);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     try {
@@ -55,6 +62,21 @@ const UserDetails = () => {
       setLoading(false);
     }
   }, [id]);
+
+  const handleDeleteUserAccount = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:2500/devdplug/admin/users/delete/${userInfo._id}`
+      );
+      console.log(response);
+      if (response.status === 200) {
+        alert("User deleted successfully");
+        navigate(-1);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   const getStatusBadge = (status) => {
     const colors = {
@@ -79,7 +101,16 @@ const UserDetails = () => {
               <Row>
                 <Col sm={12}>
                   <div className="my-5">
-                    <h4 className="text-danger mb-4">User Profile</h4>
+                    <div className="d-flex align-items-center">
+                      <h4 className="text-danger">User Profile</h4>
+                      <Button
+                        variant="danger"
+                        className="mx-4"
+                        onClick={showDeleteUserAccountModal}
+                      >
+                        Delete User Account
+                      </Button>
+                    </div>
                     <hr />
                     <div className="d-flex align-items-center justify-content-between flex-wrap">
                       <div>
@@ -168,6 +199,11 @@ const UserDetails = () => {
               showManageUserModal={showManageUser}
               closeManageUserModal={handleCloseManageUserModal}
               userInfoUser={userInfo}
+            />
+            <ConfirmDeleteUserAccount
+              showDeleteAccountModal={showDeleteUserAccount}
+              closeDeleteAccountModal={closeUserAccountModal}
+              handleDeleteAccount={handleDeleteUserAccount}
             />
             <Row></Row>
           </Container>
