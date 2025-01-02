@@ -69,33 +69,30 @@ const Sidebar = () => {
           </li>
 
           <li>
-            <Link
-              to="/admin/telecoms"
-              className="d-flex align-items-center"
-            >
+            <Link to="/admin/telecoms" className="d-flex align-items-center">
               <IoWallet className="fs-4 mx-2" />
               <span className="fs-6"> Manage Telecoms</span>
             </Link>
           </li>
-          <li>
+          {/* <li>
             <Link to="#" className="d-flex align-items-center">
               <MdPriceChange className="fs-4 mx-2" />
               <span className="fs-6">Reports</span>
             </Link>
-          </li>
+          </li> */}
 
-          <li>
+          {/* <li>
             <Link to="#" className="d-flex align-items-center">
               <RiLockPasswordLine className="fs-4 mx-2" />
               <span className="fs-6">Notifications & Logs</span>
             </Link>
-          </li>
-          <li>
+          </li> */}
+          {/* <li>
             <Link to="#" className="d-flex align-items-center">
               <CiSettings className="fs-4 mx-2" />
               <span className="fs-6">System Settings</span>
             </Link>
-          </li>
+          </li> */}
           <li>
             <Link className="text-danger" onClick={handleLogout}>
               Logout

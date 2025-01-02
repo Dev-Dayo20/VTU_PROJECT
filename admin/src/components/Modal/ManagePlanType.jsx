@@ -18,10 +18,28 @@ const ManagePlanType = ({ show, closeModal, planType }) => {
       } else {
         alert(response?.data?.error || "Something went wrong");
       }
-      console.log(response);
       closeModal();
     } catch (error) {
       console.error(error);
+    }
+  };
+
+  const handleDeletePlanType = async () => {
+    try {
+      const response = await axios.delete(
+        `http://localhost:2500/devdplug/admin/delete_plantype/${planType._id}`
+      );
+      if (response.status === 200) {
+        alert("Plantype deleted successfully");
+      }
+      closeModal();
+    } catch (error) {
+      console.error(error);
+      alert(
+        error.response?.data?.error ||
+          error.response?.message ||
+          "Something went wrong"
+      );
     }
   };
 
@@ -58,11 +76,14 @@ const ManagePlanType = ({ show, closeModal, planType }) => {
             </Form.Group>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="danger" type="submit">
+            <Button variant="success" type="submit">
               Proceed
             </Button>
             <Button onClick={closeModal} variant="secondary">
               Cancel
+            </Button>
+            <Button variant="danger" onClick={handleDeletePlanType}>
+              Delete PlanType
             </Button>
           </Modal.Footer>
         </Form>

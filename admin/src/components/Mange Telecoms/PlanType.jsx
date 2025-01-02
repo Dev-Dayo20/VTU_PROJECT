@@ -1,14 +1,23 @@
 import { useState } from "react";
 import { Table, Badge, Button } from "react-bootstrap";
 import ManagePlanType from "../Modal/ManagePLanType";
+import AddPlanTypeModal from "../Modal/AddPlanTypeModal";
 
 const PlanType = ({ PlanTypes }) => {
   const [showModal, setShowModal] = useState(false);
+  const [showAddModal, setShowAddModal] = useState(false);
   const [selectedPlanType, setSelectedPlanType] = useState(null);
 
   const handleShowModal = (plantype) => {
     setSelectedPlanType(plantype);
     setShowModal(true);
+  };
+
+  const handleShowAddModal = () => {
+    setShowAddModal(true);
+  };
+  const handleCloseAddModal = () => {
+    setShowAddModal(false);
   };
   const handleCloseModal = () => setShowModal(false);
 
@@ -26,7 +35,7 @@ const PlanType = ({ PlanTypes }) => {
     <>
       <div className="d-flex align-items-center justify-content-between mt-4">
         <h4 className="">Plan Types</h4>
-        <Button variant="outline-dark" className="fw-bold">
+        <Button variant="dark" className="fw-bold" onClick={handleShowAddModal}>
           + Add
         </Button>
       </div>
@@ -60,6 +69,10 @@ const PlanType = ({ PlanTypes }) => {
         show={showModal}
         closeModal={handleCloseModal}
         planType={selectedPlanType}
+      />
+      <AddPlanTypeModal
+        showAddModal={showAddModal}
+        closeAddModal={handleCloseAddModal}
       />
     </>
   );

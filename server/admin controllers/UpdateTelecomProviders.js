@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const { Network, PlanType, Plan } = require("../models/Network");
 
 //FETCH PLANTYPES LOGIC
@@ -92,7 +93,7 @@ const addPlanType = async (req, res) => {
     }
 
     const newPlanType = await PlanType.create({ networkId, name, status });
-    res.status(201).json({ success: true, data: newPlanType });
+    res.status(200).json({ success: true, data: newPlanType });
   } catch (error) {
     console.error(error);
     res.status(500).json({ error: "Internal server error", error });
@@ -120,6 +121,37 @@ const deletePlanType = async (req, res) => {
     res.status(500).json({ error: "Internal server error", error });
   }
 };
+
+// const deletePlanType = async (req, res) => {
+//   const session = await mongoose.startSession();
+//   session.startTransaction();
+
+//   const { id } = req.params;
+//   if (!id) {
+//     return res.status(400).json({ error: "PlanType ID is required" });
+//   }
+
+//   try {
+//     const planType = await PlanType.findById(id);
+//     if (!planType) {
+//       return res
+//         .status(404)
+//         .json({ success: false, message: "PlanType not found" });
+//     }
+
+//     await Plan.deleteMany({ planTypeId: id }).session(session);
+//     await PlanType.findByIdAndDelete(id).session(session);
+//     await session.commitTransaction();
+
+//     res
+//       .status(200)
+//       .json({ success: true, message: "Plantype deleted successfully" });
+//   } catch (error) {
+//     await session.abortTransaction();
+//     console.error(error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// };
 
 const updatePlanType = async (req, res) => {
   const { id } = req.params;
@@ -201,6 +233,10 @@ const deletePlan = async (req, res) => {
 const updatePlan = async (req, res) => {
   const { id } = req.params;
   const { name, price, planId, status } = req.body;
+
+  if (!name || !price || !planId || !status) {
+    return res.status(400).json({ error: "All fields are required" });
+  }
 
   try {
     const updatedPlan = await Plan.findByIdAndUpdate(

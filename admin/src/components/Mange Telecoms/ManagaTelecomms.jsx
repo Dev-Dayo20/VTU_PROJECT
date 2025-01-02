@@ -6,12 +6,13 @@ import axios from "axios";
 import Networks from "./Networks";
 import PlanType from "./PlanType";
 import Plan from "./Plan";
+import AddPlanTypeModal from "../Modal/AddPlanTypeModal";
+import AddPlanModal from "../Modal/AddPlanModal";
 
 const ManagaTelecomms = () => {
   const [network, setNetwork] = useState([]);
   const [planTypes, setPlanTypes] = useState([]);
   const [plans, setPlans] = useState([]);
-  const [error, setError] = useState("");
 
   useEffect(() => {
     const fetchNetworks = async () => {
@@ -45,7 +46,7 @@ const ManagaTelecomms = () => {
     const fetchPlans = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:2500/devdplug//admin/plans"
+          "http://localhost:2500/devdplug/admin/plans"
         );
         setPlans(response.data.data || []);
       } catch (error) {
@@ -69,6 +70,9 @@ const ManagaTelecomms = () => {
             <Networks network={network} />
             <PlanType PlanTypes={planTypes} />
             <Plan Plans={plans} />
+            <AddPlanTypeModal Network={network} />
+
+            <AddPlanModal plantype={planTypes} />
           </div>
         </div>
       </Container>
