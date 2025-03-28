@@ -4,7 +4,7 @@ const { Network, Plan, PlanType } = require("./models/Network");
 
 async function bulkInsert() {
   try {
-    await mongoose.connect("mongodb://localhost:27017/vtu_db", {});
+    await mongoose.connect("mongodb://127.0.0.1:27017/vtu_db", {});
 
     const data = [
       {

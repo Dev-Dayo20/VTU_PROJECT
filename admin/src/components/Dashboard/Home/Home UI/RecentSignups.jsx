@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 import { Table, Spinner, Badge } from "react-bootstrap";
 
@@ -40,7 +40,7 @@ const RecentSignups = () => {
         {loading ? (
           <Spinner animation="border" variant="danger" />
         ) : recentSignups.length > 0 ? (
-          <Table striped bordered hover responsive>
+          <Table striped bordered hover responsive size="sm">
             <thead>
               <tr>
                 <th>Name</th>

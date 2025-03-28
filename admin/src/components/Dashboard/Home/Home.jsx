@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
 import TotalUsers from "./Home UI/TotalUsers";
 import ActiveUsers from "./Home UI/ActiveUsers";
 import BlockedUsers from "./Home UI/BlockedUsers";
@@ -8,8 +7,16 @@ import FailedTransactions from "./Home UI/FailedTransactions";
 import PendingTransactions from "./Home UI/PendingTransactions";
 import RecentSignups from "./Home UI/RecentSignups";
 import RecentTransactions from "./Home UI/RecentTransactions";
+import { useAuth } from "../../../Utils/AuthProvider";
+import { Navigate } from "react-router-dom";
 
 const Home = () => {
+  const { admin, logout, isAuthenticated } = useAuth();
+
+  if (!isAuthenticated) {
+    return <Navigate to="/admin/login" />;
+  }
+
   const getGreeting = () => {
     let hour = new Date().getHours();
     if (hour < 12) return "Good morning";
@@ -21,8 +28,19 @@ const Home = () => {
       <section>
         <Container className="py-5">
           <h5 className="mt-5 text-danger"> {getGreeting()}! </h5>
-          <div className="welcome-section d-flex align-items-center">
-            <h4>Welcome back, Admin!</h4>
+          <div className="welcome-section d-flex align-items-center justify-content-between">
+            {admin ? (
+              <h4>Welcome back, {admin.role}! </h4>
+            ) : (
+              "Welcome back Admin!"
+            )}
+            <Button
+              onClick={logout}
+              variant="danger"
+              className="fw-bold"
+            >
+              Logout
+            </Button>
           </div>
           <hr />
           <Row className="mt-4 g-4">

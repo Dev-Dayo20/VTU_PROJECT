@@ -5,7 +5,7 @@ const fetchUsers = async (req, res) => {
     const { page = 1, limit = 10, search = "" } = req.query;
 
     const searchFilter = {
-      $or: [
+      $or: [  
         { name: { $regex: search, $options: "i" } },
         { email: { $regex: search, $options: "i" } },
         { phoneNumber: { $regex: search, $options: "i" } },
@@ -23,14 +23,13 @@ const fetchUsers = async (req, res) => {
       return res.status(404).json({ error: "No blocked users found" });
     }
     const totalBlockedUsers = blockedUsers.length;
-    // if (totalBlockedUsers < 0 || totalBlockedUsers === null) {
-    //   return res.status(404).json({ error: "No Blocked Users" });
-    // }
 
     // Fetch filtered users with pagination
     const users = await User.find(searchFilter)
       .skip((page - 1) * limit) // Skip users from previous pages
-      .limit(parseInt(limit)); // Limit results per page
+      .limit(parseInt(limit))
+      .select("name username email phoneNumber status")
+      .sort({ createdAt: -1 });
 
     // Get total number of users matching the search
     const totalUsers = await User.countDocuments(searchFilter);

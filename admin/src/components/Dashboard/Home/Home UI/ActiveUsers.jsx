@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Row, Col, Card, Modal, Button, Spinner, Badge } from "react-bootstrap";
+import { Card, Spinner } from "react-bootstrap";
 import axios from "axios";
 
 const ActiveUsers = () => {
   const [activeUsers, setActiveUsers] = useState("");
   const [loading, setLoading] = useState(false);
-  const [showModal, setShowModal] = useState(false);
-  const [modalContent, setModalContent] = useState({
-    title: "",
-    message: "",
-    variant: "info",
-  });
   const navigate = useNavigate();
-  const { title, message, variant } = modalContent;
 
   useEffect(() => {
     const fetchTotalUsers = async () => {
@@ -30,13 +23,13 @@ const ActiveUsers = () => {
       } catch (error) {
         setLoading(true);
         console.log(error);
-        if (error.response?.status === 401) {
-          console.log("Token expired. Redirecting to login.");
-          localStorage.removeItem("token");
-          navigate("/");
-        } else {
-          console.log("An error occurred. Please try again.");
-        }
+        // if (error.response?.status === 401) {
+        //   console.log("Token expired. Redirecting to login.");
+        //   localStorage.removeItem("token");
+        //   navigate("/admin/login");
+        // } else {
+        //   console.log("An error occurred. Please try again.");
+        // }
       } finally {
         setLoading(false);
       }
@@ -44,10 +37,6 @@ const ActiveUsers = () => {
     fetchTotalUsers();
   }, [navigate]);
 
-  const handleCloseModal = () => {
-    setShowModal(false);
-    navigate("/admin/login");
-  };
   return (
     <>
       <Card bg="" border="success" className="">
@@ -66,17 +55,6 @@ const ActiveUsers = () => {
           )}
         </Card.Body>
       </Card>
-      <Modal show={showModal} onHide={handleCloseModal}>
-        <Modal.Header closeButton>
-          <Modal.Title> {title} </Modal.Title>
-        </Modal.Header>
-        <Modal.Body> {message} </Modal.Body>
-        <Modal.Footer>
-          <Button onClick={handleCloseModal} variant={variant}>
-            Okay
-          </Button>
-        </Modal.Footer>
-      </Modal>
     </>
   );
 };

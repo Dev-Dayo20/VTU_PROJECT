@@ -37,7 +37,7 @@ const webhook = async (req, res) => {
         return res.status(400).send("Payment verification failed");
       }
     } else {
-      res.status(200).send("Event received but not charge.success");
+      res.status(400).send("Event received but not charge.success");
     }
   } catch (error) {
     console.error("Error handling webhook: ", error);
@@ -60,6 +60,7 @@ const verifyPayment = async (reference) => {
     return paymentData.status === "success";
   } catch (error) {
     console.error("Error verifying payment:", error);
+    res.status(500).send("Error verifying payment");
     return false;
   }
 };

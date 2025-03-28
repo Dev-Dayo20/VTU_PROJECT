@@ -1,20 +1,19 @@
-import React, { useState } from "react";
-import "../Login/Login.css";
+import { useState } from "react";
+import "./Login.css";
 import axios from "axios";
-import devdlogo from "../../assets/devdlogo.png";
-import { Link, useNavigate } from "react-router-dom";
+import devdlogo from "../../../assets/devdlogo.png";
+import { useNavigate } from "react-router-dom";
 import {
   Modal,
   Button,
   Form,
-  Image,
   Container,
   Row,
-  Col,
   Card,
   FloatingLabel,
   Spinner,
 } from "react-bootstrap";
+import { useAuth } from "../../../Utils/AuthProvider";
 
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
@@ -25,6 +24,7 @@ const Login = () => {
     message: "",
     variant: "danger",
   });
+  const { login } = useAuth();
   const navigate = useNavigate("");
   const { email, password } = formData;
 
@@ -44,8 +44,8 @@ const Login = () => {
         body,
         config
       );
-      localStorage.setItem("token", response.data.token);
-      navigate("/admin/dashboard");
+      login(response.data.token);
+      navigate("/");
       console.log(response);
     } catch (error) {
       setLoading(true);
