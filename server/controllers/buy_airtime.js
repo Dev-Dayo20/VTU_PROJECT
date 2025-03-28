@@ -3,7 +3,7 @@ require("dotenv").config();
 const Wallet = require("../models/wallet_models");
 const Transaction = require("../models/Transaction");
 
-// Regex format to validate Nigerian phone numbers
+// Regex format to validate phone numbers
 const validatePhoneNumber = (mobileNumber) => {
   const regex = /^0\d{10}$/;
   return regex.test(mobileNumber);
@@ -32,11 +32,15 @@ const purchase_airtime = async (req, res) => {
   const userId = req.user.id;
   const wallet = await Wallet.findOne({ userId });
 
-  if (!wallet) return res.status(400).json({ error: "Wallet not found" });
-  if (wallet.balance < amount)
+  if (!wallet) {
+    return res.status(400).json({ error: "Wallet not found" });
+  }
+  if (wallet.balance < amount) {
     return res.status(400).json({ error: "Insufficient wallet balance" });
-  if (amount < 50)
+  }
+  if (amount < 50) {
     return res.status(400).json({ error: "Amount has to be greater than 50" });
+  }
 
   const originalBalance = wallet.balance;
   wallet.balance -= amount;
@@ -98,10 +102,10 @@ const purchase_airtime = async (req, res) => {
       throw new Error("Airtime purchase failed");
     }
   } catch (error) {
-    console.error(
-      "Error in airtime purchase:",
-      error.response?.data || error.message
-    );
+    // console.error(
+    //   "Error in airtime purchase:",
+    //   error.response?.data || error.message
+    // );
 
     // Rollback balance and update transaction status to "failed"
     wallet.balance = originalBalance;

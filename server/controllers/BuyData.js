@@ -85,24 +85,25 @@ const purchaseData = async (req, res) => {
         data: response.data,
       });
     }
-    console.log(response.data);
+    // console.log(response.data);
   } catch (error) {
-    console.log(
-      "Error making API call:",
-      error.response ? error.response.data : error.message
-    );
+    // console.log(
+    //   "Error making API call:",
+    //   error.response ? error.response.data : error.message
+    // );
 
     // Revert the balance in case of API failure
     wallet.balance = originalBalance;
     await wallet.save();
     console.log(`Rollback balance: ${wallet.balance}`);
 
+    // Update transaction history status to failed
     transaction.status = "failed";
     await transaction.save();
 
     if (error.response && error.response.data && error.response.data.error) {
       const errorMessage = error.response.data.error || "Something went wrong";
-      res.status(400).json({ error: errorMessage });
+      return res.status(400).json({ error: errorMessage });
     }
     return res.status(500).json({
       error: "Failed to purchase data. Please try again.",
